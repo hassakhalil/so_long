@@ -12,13 +12,17 @@
 
 NAME = so_long
 
-SRC = 
+SRC = main.c
 
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror
 
-$(NAME):
+%.o: %.c
+	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+
+$(NAME): $(OBJ)
+	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 all: $(NAME)
 
