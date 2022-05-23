@@ -12,10 +12,76 @@
 
 #include "so_long.h"
 
-int check_for_errors(int argc, char *s)
+int  check_first_last_line(char *line)
 {
-     //check if the map is a .ber file and its valid
-     int  n;
+     int  i;
+
+     i = 0;
+     while (line[i])
+     {
+          if (line[i] != '1')
+               return (-1);
+          i++;
+     }
+     return (0);
+}
+
+int  check_line(char *line)
+{
+     int  i;
+     char c;
+
+     i = 0;
+     if (line[i] != '1')
+          return (-1);
+     while(line[i])
+     {
+          if (line[i] != '0' && line[i] != '1' && line[i] != 'C' && line[i] != 'E' && line[i] != 'P')
+               return (-1);
+          c = line[i];
+          i++;
+     }
+     if (line[i -1] != '1')
+          return (-1);
+     return (0);
+}
+
+int  check_min_req(char *s)
+{
+     int  position;
+     int  collectibles;
+     int  exit;
+     int  fd;
+     char *line;
+
+     position = 0;
+     collectibles = 0;
+     exit = 0;
+     fd = open(s, O_RDWR);
+     line = get_next_line(fd);
+     while (line)
+     {
+          if (ft_strchr(line, 'E'))
+               exit++;
+          if (ft_strchr(line, 'C'))
+               collectibles++;
+          if (ft_strchr(line, 'P'))
+               position++;
+          free(line);
+          line = get_next_line(fd);
+     }
+     if (position != 1 || !collectibles || exit != 1)
+     {
+          close(fd);
+          return (-1);
+     }
+     close(fd);
+     return (0);
+}
+
+int check_for_errors(char *s)
+{
+     size_t  n;
      int  fd;
      char *line;
      char *last;
@@ -27,27 +93,36 @@ int check_for_errors(int argc, char *s)
      line = get_next_line(fd);
      n = ft_strlen(line);
      if(check_first_last_line(line))
+     {
+          close(fd);
+          free(line);
           return (-1);
+     }
      line = get_next_line(fd);
+     last = ft_strdup(line);
      while(line)
      {
+          free(last);
           last = ft_strdup(line);
           if (check_line(line) || ft_strlen(line) != n)
+          {
+               close(fd);
+               free(line);
+               free(last);
                return (-1);
+          }
+          free(line);
           line = get_next_line(fd);
      }
      if(check_first_last_line(last))
+     {
+          close(fd);
+          free(last);
           return (-1);
-     if (check_min_req(fd))
-          return(-1);
-
-     11111111
-     10000001
-     10000001
-     10010001
-     10011001
-     11111111
-     //and check for all errors
+     }
      close(fd);
+     free(last);
+     if (check_min_req(s))
+          return(-1);
      return (0);
 }

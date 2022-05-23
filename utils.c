@@ -1,22 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/20 11:21:41 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/05/20 11:21:49 by hkhalil          ###   ########.fr       */
+/*   Created: 2022/05/23 22:10:19 by hkhalil           #+#    #+#             */
+/*   Updated: 2022/05/23 22:10:33 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
-# include <mlx.h>
-# include <fcntl.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "get_next_line.h"
+#include "so_long.h"
 
-int     check_for_errors(char *s);
-#endif

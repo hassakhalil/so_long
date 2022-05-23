@@ -24,11 +24,9 @@ int main(int argc, char *argv[])
         write(2, "Error\n", 7);
         return (-1); 
     }
-        //check if the map is a .ber file and ist valid
-        check_for_errors(argv[1]);
-        mlx = mlx_init();
-        img = mlx_new_image(mlx, 1920, 1080);
-        mlx_win = mlx_new_window(mlx, 1920, 1080, "game");
-        //mlx_loop(mlx);
+    mlx = mlx_init();
+    img = mlx_new_image(mlx, 1920, 1080);
+    mlx_win = mlx_new_window(mlx, 1920, 1080, "game");
+    //mlx_loop(mlx);
     return (0);
 }
