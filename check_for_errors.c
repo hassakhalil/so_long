@@ -17,7 +17,7 @@ int  check_first_last_line(char *line)
      int  i;
 
      i = 0;
-     while (line[i])
+     while (line[i] != '\n')
      {
           if (line[i] != '1')
                return (-1);
@@ -34,7 +34,7 @@ int  check_line(char *line)
      i = 0;
      if (line[i] != '1')
           return (-1);
-     while(line[i])
+     while(line[i] != '\n')
      {
           if (line[i] != '0' && line[i] != '1' && line[i] != 'C' && line[i] != 'E' && line[i] != 'P')
                return (-1);
@@ -87,12 +87,12 @@ int check_for_errors(char *s)
      char *last;
 
      n = ft_strlen(s);
-     if (s[n - 1] != '.' || s[n - 3] != 'b'  || s[n - 2] != 'e' || s[n - 1] != 'r')
+     if (s[n - 4] != '.' || s[n - 3] != 'b'  || s[n - 2] != 'e' || s[n - 1] != 'r')
           return (-1);
      fd = open(s, O_RDWR);
      line = get_next_line(fd);
      n = ft_strlen(line);
-     if(check_first_last_line(line))
+     if (check_first_last_line(line))
      {
           close(fd);
           free(line);
@@ -100,7 +100,7 @@ int check_for_errors(char *s)
      }
      line = get_next_line(fd);
      last = ft_strdup(line);
-     while(line)
+     while (line)
      {
           free(last);
           last = ft_strdup(line);
@@ -114,7 +114,7 @@ int check_for_errors(char *s)
           free(line);
           line = get_next_line(fd);
      }
-     if(check_first_last_line(last))
+     if (check_first_last_line(last))
      {
           close(fd);
           free(last);
