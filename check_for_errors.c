@@ -58,6 +58,8 @@ int  check_min_req(char *s)
      collectibles = 0;
      exit = 0;
      fd = open(s, O_RDWR);
+     if (fd == -1)
+          return (-1);
      line = get_next_line(fd);
      while (line)
      {
@@ -90,6 +92,8 @@ int check_for_errors(char *s)
      if (s[n - 4] != '.' || s[n - 3] != 'b'  || s[n - 2] != 'e' || s[n - 1] != 'r')
           return (-1);
      fd = open(s, O_RDWR);
+     if (fd == -1)
+          return (-1);
      line = get_next_line(fd);
      n = ft_strlen(line);
      if (check_first_last_line(line))
