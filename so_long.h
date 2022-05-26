@@ -18,5 +18,14 @@
 # include <stdlib.h>
 # include "get_next_line.h"
 
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 int     check_for_errors(char *s);
+int n_columns(char *s);
+int n_lines(char *s);
 #endif
