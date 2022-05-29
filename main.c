@@ -12,6 +12,13 @@
 
 #include "so_long.h"
 
+int	key_hook(int keycode)
+{
+    (void)keycode;
+	printf("Hello from key_hook!\n");
+	return (0);
+}
+
 int main(int argc, char *argv[])
 {
     t_data  game;
@@ -70,6 +77,7 @@ int main(int argc, char *argv[])
             j += 50;
         }
         free(line);
+        mlx_key_hook(game.mlx_win, key_hook, &game);
         i += 50;
     }
     close(fd);
