@@ -24,8 +24,13 @@ typedef struct	s_data {
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
+	void	*mlx;
+	void	*win;
+	void    *mlx_win;
+	int		img_width;
+	int		img_height;
 }				t_data;
-int     check_for_errors(char *s);
+int	check_for_errors(char *s);
 int n_columns(char *s);
 int n_lines(char *s);
 #endif

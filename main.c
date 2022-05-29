@@ -14,11 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-    void    *mlx;
-    void    *mlx_win;
     t_data  img;
-	int		img_width;
-	int		img_height;
     int     n = 0;
     int     m = 0;
     int     i = 0;
@@ -32,11 +28,11 @@ int main(int argc, char *argv[])
         write(2, "Error\n", 7);
         return (-1); 
     }
-    mlx = mlx_init();
+    img.mlx = mlx_init();
     m = n_columns(argv[1]);
     n = n_lines(argv[1]);
-    mlx_win = mlx_new_window(mlx, m * 50, n * 50, "./so_long");
-    img.img = mlx_new_image(mlx, m * 50, n * 50);
+    img.mlx_win = mlx_new_window(img.mlx, m * 50, n * 50, "./so_long");
+    img.img = mlx_new_image(img.mlx, m * 50, n * 50);
     img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
     fd = open(argv[1], O_RDWR);
     if (fd == -1)
@@ -48,27 +44,27 @@ int main(int argc, char *argv[])
         line = get_next_line(fd);
         while (j < m * 50)
         {
-            img.img = mlx_xpm_file_to_image(mlx, "xpm/background.xpm", &img_width, &img_height);
-            mlx_put_image_to_window(mlx, mlx_win, img.img, j, i);
+            img.img = mlx_xpm_file_to_image(img.mlx, "xpm/background.xpm", &img.img_width, &img.img_height);
+            mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, j, i);
             if (line[l] == '1')
             {
-                img.img = mlx_xpm_file_to_image(mlx, "xpm/wall.xpm", &img_width, &img_height);
-                mlx_put_image_to_window(mlx, mlx_win, img.img, j, i);
+                img.img = mlx_xpm_file_to_image(img.mlx, "xpm/wall.xpm", &img.img_width, &img.img_height);
+                mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, j, i);
             }
             else if (line[l] == 'C')
             {
-                img.img = mlx_xpm_file_to_image(mlx, "xpm/coin.xpm", &img_width, &img_height);
-                mlx_put_image_to_window(mlx, mlx_win, img.img, j, i);
+                img.img = mlx_xpm_file_to_image(img.mlx, "xpm/coin.xpm", &img.img_width, &img.img_height);
+                mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, j, i);
             }
             else if (line[l] == 'E')
             {
-                img.img = mlx_xpm_file_to_image(mlx, "xpm/exit.xpm", &img_width, &img_height);
-                mlx_put_image_to_window(mlx, mlx_win, img.img, j, i);
+                img.img = mlx_xpm_file_to_image(img.mlx, "xpm/exit.xpm", &img.img_width, &img.img_height);
+                mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, j, i);
             }
             else if (line[l] == 'P')
             {
-                img.img = mlx_xpm_file_to_image(mlx, "xpm/position.xpm", &img_width, &img_height);
-                mlx_put_image_to_window(mlx, mlx_win, img.img, j, i);
+                img.img = mlx_xpm_file_to_image(img.mlx, "xpm/position.xpm", &img.img_width, &img.img_height);
+                mlx_put_image_to_window(img.mlx, img.mlx_win, img.img, j, i);
             }
             l++;
             j += 50;
@@ -77,6 +73,6 @@ int main(int argc, char *argv[])
         i += 50;
     }
     close(fd);
-    mlx_loop(mlx);
+    mlx_loop(img.mlx);
     return (0);
 }
