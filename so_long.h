@@ -33,4 +33,5 @@ typedef struct	s_data {
 int	check_for_errors(char *s);
 int n_columns(char *s);
 int n_lines(char *s);
+int	key_hook(int keycode);
 #endif
