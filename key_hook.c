@@ -19,18 +19,22 @@ int	key_hook(int keycode)
             exit(0);
     else if (keycode == 13)
     {
-        printf("W\n");
+        //up
+        printf("W\n"); 
     }
     else if (keycode == 0)
     {
+        //left
         printf("A\n");
     }
     else if (keycode == 1)
     {
+        //down
         printf("S\n");
     }
     else if (keycode == 2)
     {
+        //right
         printf("D\n");
     }
 	return (0);
