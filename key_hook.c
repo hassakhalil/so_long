@@ -14,7 +14,10 @@
 
 int	key_hook(int keycode)
 {
-    if (keycode == 13)
+    printf("%d\n", keycode);
+    if (keycode == 53)
+            exit(0);
+    else if (keycode == 13)
     {
         printf("W\n");
     }
