@@ -12,9 +12,23 @@
 
 #include "so_long.h"
 
-int	key_hook(int keycode)
+int	key_hook(int keycode, t_data *game)
 {
-    (void)keycode;
-	printf("Hello from key_hook!\n");
+    if (keycode == 65)
+    {
+    
+    }
+    else if (keycode == 68)
+    {
+
+    }
+    else if (keycode == 87)
+    {
+        
+    }
+    else if (keycode == 83)
+    {
+
+    }
 	return (0);
 }
