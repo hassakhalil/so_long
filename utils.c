@@ -47,3 +47,27 @@ int n_lines(char *s)
     }
     return (i);
 }
+
+void    position(int *x, int *y, t_data game)
+{
+    int     fd;
+    char    *line;
+
+    fd = open(game.map, O_RDWR);
+    line = get_next_line(fd);
+    while (line)
+    {
+        if (ft_strchr(line, 'P'))
+        {
+            *x = 0;
+            while (line[*x] != 'P')
+                (*x)++;
+            free(line);
+            close(fd);
+            return ;
+        }
+        free(line);
+        line = get_next_line(fd);
+        (*y)++;
+    }
+}

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-t_data  map_draw(int n, int m, t_data game, char *s)
+t_data  map_draw(int n, int m, t_data game)
 {
     int     fd;
     int     i;
@@ -20,7 +20,7 @@ t_data  map_draw(int n, int m, t_data game, char *s)
     int     l;
     char    *line;
 
-    fd = open(s, O_RDWR);
+    fd = open(game.map, O_RDWR);
     i = 0;
     while(i < n * 50)
     {

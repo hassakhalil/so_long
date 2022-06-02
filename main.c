@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-    t_data  game;
+    t_data  *game = malloc(sizeof(t_data));
     int     n = 0;
     int     m = 0;
 
@@ -23,13 +23,14 @@ int main(int argc, char *argv[])
         write(2, "Error\n", 7);
         return (-1); 
     }
-    game.mlx = mlx_init();
-    m = n_columns(argv[1]);
-    n = n_lines(argv[1]);
-    game.mlx_win = mlx_new_window(game.mlx, m * 50, n * 50, "./so_long");
-    game.img = mlx_new_image(game.mlx, m * 50, n * 50);
-    game.addr = mlx_get_data_addr(game.img, &game.bits_per_pixel, &game.line_length, &game.endian);
-    mlx_key_hook(map_draw(n, m, game, argv[1]).mlx_win, key_hook, &game);
-    mlx_loop(map_draw(n, m, game, argv[1]).mlx);
+    (*game).map = ft_strdup(argv[1]);
+    (*game).mlx = mlx_init();
+    m = n_columns((*game).map);
+    n = n_lines((*game).map);
+    (*game).mlx_win = mlx_new_window((*game).mlx, m * 50, n * 50, "./so_long");
+    (*game).img = mlx_new_image((*game).mlx, m * 50, n * 50);
+    (*game).addr = mlx_get_data_addr((*game).img, &(*game).bits_per_pixel, &(*game).line_length, &(*game).endian);
+    mlx_key_hook(map_draw(n, m, *game).mlx_win, key_hook, &game);
+    mlx_loop(map_draw(n, m, *game).mlx);
     return (0);
 }
