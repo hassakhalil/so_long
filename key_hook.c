@@ -52,9 +52,8 @@ int	key_hook(int keycode, t_data *game)
     }
     else
     {
-        //delete the P
+        //cahnge the map
         //redraw the map
-        printf("exit\n");
         exit(0);
     }
 	return (0);
