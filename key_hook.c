@@ -20,7 +20,7 @@ int	key_hook(int keycode)
     else if (keycode == 13)
     {
         //up
-        printf("W\n"); 
+        printf("W\n");
     }
     else if (keycode == 0)
     {
