@@ -16,35 +16,46 @@ int	key_hook(int keycode, t_data *game)
 {
     int x = 0;
     int y = 0;
+    int nx = 0;
+    int ny = 0;
 
     if (keycode == 53)
             exit(0);
-     //get the position of P
-    //check next position
-        //if up = '1' -> do nothing
-        //if up = '0' || up = 'C' -> change the map & draw new map
-        // if up = 'E' change the map & exit
     position(&x, &y, *game);
-    printf("x = %d and y = %d\n", x, y);
-    /*else if (keycode == 13)
+    if (keycode == 13)
     {
-        //up
-        printf("W\n");
+        ny = y - 1;
+        nx = x;
     }
     else if (keycode == 0)
     {
-        //left
-        printf("A\n");
+        ny = y;
+        nx = x - 1;
     }
     else if (keycode == 1)
     {
-        //down
-        printf("S\n");
+        ny = y + 1;
+        nx = x;
     }
     else if (keycode == 2)
     {
-        //right
-        printf("D\n");
-    }*/
+        ny = y;
+        nx = x + 1;
+    }
+    if (new_position(nx, ny, *game) == '1')
+        return (0);
+    else if (new_position(nx, ny, *game) == '0' || new_position(nx, ny, *game) == 'C')
+    {
+        //change the map
+        //redraw
+        printf("hello im still here\n");
+    }
+    else
+    {
+        //delete the P
+        //redraw the map
+        printf("exit\n");
+        exit(0);
+    }
 	return (0);
 }

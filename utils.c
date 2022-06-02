@@ -71,3 +71,24 @@ void    position(int *x, int *y, t_data game)
         (*y)++;
     }
 }
+
+int		new_position(int nx, int ny, t_data game)
+{
+    int     fd;
+    int     i;
+    int     c;
+    char    *line;
+
+    fd = open(game.map, O_RDWR);
+    i = 0;
+    line  = get_next_line(fd);
+    while (i != ny)
+    {
+        free(line);
+        line  = get_next_line(fd);
+        i++;
+    }
+    c = line[nx];
+    free(line);
+    return (c);
+}
