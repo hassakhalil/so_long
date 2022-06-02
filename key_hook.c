@@ -46,13 +46,13 @@ int	key_hook(int keycode, t_data *game)
         return (0);
     else if (new_position(nx, ny, *game) == '0' || new_position(nx, ny, *game) == 'C')
     {
-        //change the map
+        change_map(nx, ny, *game);
         //redraw
         printf("hello im still here\n");
     }
     else
     {
-        //cahnge the map
+        change_map(0, 0, *game);
         //redraw the map
         exit(0);
     }

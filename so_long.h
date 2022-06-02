@@ -38,4 +38,6 @@ int		key_hook(int keycode, t_data *game);
 t_data  map_draw(int n, int m, t_data game);
 void    position(int *x, int *y, t_data game);
 int		new_position(int nx, int ny, t_data game);
+void	change_map(int nx, int ny, t_data game);
+void    remove_p(t_data game);
 #endif
