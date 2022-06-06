@@ -53,7 +53,7 @@ void    position(int *x, int *y, t_data game)
     int     fd;
     char    *line;
 
-    fd = open(game.map, O_RDWR);
+    fd = open(game.file_name, O_RDWR);
     line = get_next_line(fd);
     while (line)
     {
@@ -79,7 +79,7 @@ int		new_position(int nx, int ny, t_data game)
     int     c;
     char    *line;
 
-    fd = open(game.map, O_RDWR);
+    fd = open(game.file_name, O_RDWR);
     i = 0;
     line  = get_next_line(fd);
     while (i != ny)
@@ -100,7 +100,9 @@ void	change_map(int nx, int ny, t_data game)
     char    *line;
 
     remove_p(game);
-    fd = open(game.map, O_RDWR);
+    if (nx == 0 && ny == 0)
+        return ;
+    fd = open(game.file_name, O_RDWR);
     i = 0;
     line  = get_next_line(fd);
     while (i != ny)
@@ -119,7 +121,7 @@ void    remove_p(t_data game)
     int     i;
     char    *line;
 
-    fd = open(game.map, O_RDWR);
+    fd = open(game.file_name, O_RDWR);
     line  = get_next_line(fd);
     while (line)
     {
@@ -135,4 +137,22 @@ void    remove_p(t_data game)
         free(line);
         line  = get_next_line(fd);
     }
+}
+
+void    convert_map(t_data *game)
+{
+    int     fd;
+    int     i;
+
+    fd = open((*game).file_name, O_RDWR);
+    i = 0;
+    (*game).map[i]  = get_next_line(fd);
+    while(i < (*game).n)
+    {
+        (*game).map[i]  = get_next_line(fd);
+        i++;
+    }
+    (*game).map[i] = malloc(sizeof(char *));
+    (*game).map[i] = NULL;
+    close(fd);
 }
