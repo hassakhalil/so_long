@@ -147,11 +147,8 @@ void    convert_map(t_data *game)
     fd = open((*game).file_name, O_RDWR);
     i = 0;
     (*game).map = malloc(sizeof(char *) * ((*game).n + 1));
-    printf("%d\n", (*game).n);
-    printf("%d\n", (*game).m);
     while(i < (*game).n)
     {
-        printf("here %d\n", i);
         ((*game).map)[i]  = get_next_line(fd);
         i++;
     }
