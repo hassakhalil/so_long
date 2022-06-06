@@ -21,7 +21,7 @@ int	key_hook(int keycode, t_data *game)
 
     if (keycode == 53)
             exit(0);
-    position(&x, &y, *game);
+    position(&x, &y, game);
     if (keycode == 13)
     {
         ny = y - 1;
@@ -42,22 +42,21 @@ int	key_hook(int keycode, t_data *game)
         ny = y;
         nx = x + 1;
     }
+    printf("hello world!\n");
+    printf("%d\n", y);
+
+    printf("%d\n", x);
     if (((*game).map)[ny][nx] == '1')
         return (0);
     else if (((*game).map)[ny][nx] == '0' || ((*game).map)[ny][nx] == 'C')
     {
-        printf("seg here\n");
         ((*game).map)[y][x] = '0';
-        printf("seg here\n");
         ((*game).map)[ny][nx] = 'P';
-        printf("seg here\n");
         map_draw(game);
     }
     else
     {
-        printf("seg here\n");
         ((*game).map)[y][x] = '0';
-        printf("seg here\n");
         map_draw(game);
         exit(0);
     }

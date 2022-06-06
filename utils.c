@@ -48,16 +48,20 @@ int n_lines(char *s)
     return (i);
 }
 
-void    position(int *x, int *y, t_data game)
+void    position(int *x, int *y, t_data *game)
 {
-    *y = 0;
-    while (*y < game.n)
+    int i = 0;
+    int j = 0;
+
+    while (((*game).map)[i])
     {
-        if (ft_strchr((game.map)[*y], 'P'))
+        if (ft_strchr(((*game).map)[i], 'P'))
         {
-            *x = 0;
-            while ((game.map)[*y][*x] != 'P')
-                (*x)++;
+            j = 0;
+            while (((*game).map)[i][j] != 'P')
+                j++;
+            *y = i;
+            *x = j;
             return ;
         }
         (*y)++;

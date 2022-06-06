@@ -21,11 +21,11 @@ void  map_draw(t_data *game)
 
     i = 0;
     k = 0;
-    while(i < (*game).n * 50)
+    while(k < (*game).n)
     {
         j = 0;
         l = 0;
-        while (j < (*game).m * 50)
+        while (l < (*game).m)
         {
             (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/background.xpm", &(*game).img_width, &(*game).img_height);
             mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);

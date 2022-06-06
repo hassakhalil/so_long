@@ -39,9 +39,6 @@ int 	n_columns(char *s);
 int 	n_lines(char *s);
 int		key_hook(int keycode, t_data *game);
 void	map_draw(t_data *game);
-void    position(int *x, int *y, t_data game);
-int		new_position(int nx, int ny, t_data game);
-void	change_map(int nx, int ny, t_data game);
-void    remove_p(t_data game);
+void    position(int *x, int *y, t_data *game);
 void    convert_map(t_data *game);
 #endif
