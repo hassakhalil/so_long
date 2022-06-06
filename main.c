@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-    t_data  *game = malloc(sizeof(t_data ));
+    t_data  *game = malloc(sizeof(t_data));
 
     if (argc != 2 || check_for_errors(argv[1]))
     {
@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
     (*game).img = mlx_new_image((*game).mlx, (*game).m * 50, (*game).n * 50);
     (*game).addr = mlx_get_data_addr((*game).img, &(*game).bits_per_pixel, &(*game).line_length, &(*game).endian);
     map_draw(game);
-    mlx_key_hook((*game).mlx_win, key_hook, &game);
+    mlx_key_hook((*game).mlx_win, key_hook, game);
     mlx_loop((*game).mlx);
     return (0);
 }

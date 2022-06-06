@@ -42,10 +42,6 @@ int	key_hook(int keycode, t_data *game)
         ny = y;
         nx = x + 1;
     }
-    printf("hello world!\n");
-    printf("%d\n", y);
-
-    printf("%d\n", x);
     if (((*game).map)[ny][nx] == '1')
         return (0);
     else if (((*game).map)[ny][nx] == '0' || ((*game).map)[ny][nx] == 'C')

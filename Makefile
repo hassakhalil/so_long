@@ -16,13 +16,13 @@ SRC = main.c check_for_errors.c get_next_line.c get_next_line_utils.c utils.c ke
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -D BUFFER_SIZE=42 -Wall -Wextra -Werror
+CFLAGS = -D BUFFER_SIZE=42 -Wall -Wextra -Werror -g -fsanitize=address
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	$(CC) $(CFLAGS) $(OBJ) -I -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
 
 all: $(NAME)
 
