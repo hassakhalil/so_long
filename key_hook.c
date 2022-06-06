@@ -46,14 +46,18 @@ int	key_hook(int keycode, t_data *game)
         return (0);
     else if (new_position(nx, ny, *game) == '0' || new_position(nx, ny, *game) == 'C')
     {
-        ((*game).map)[x][y] = '0';
-        ((*game).map)[nx][ny] = 'P';
+        printf("seg here\n");
+        ((*game).map)[y][x] = '0';
+        printf("seg here\n");
+        ((*game).map)[ny][nx] = 'P';
+        printf("seg here\n");
         map_draw(game);
     }
     else
     {
-        ((*game).map)[x][y] = '0';
-        change_map(0, 0, *game);
+        printf("seg here\n");
+        ((*game).map)[y][x] = '0';
+        printf("seg here\n");
         map_draw(game);
         exit(0);
     }
