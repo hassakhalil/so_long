@@ -14,39 +14,37 @@
 
 void  map_draw(t_data *game)
 {
-    int     fd;
     int     i;
     int     j;
     int     l;
-    char    *line;
+    int     k;
 
-    fd = open((*game).file_name, O_RDWR);
     i = 0;
+    k = 0;
     while(i < (*game).n * 50)
     {
         j = 0;
         l = 0;
-        line = get_next_line(fd);
         while (j < (*game).m * 50)
         {
             (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/background.xpm", &(*game).img_width, &(*game).img_height);
             mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
-            if (line[l] == '1')
+            if ((*game).map[k][l] == '1')
             {
                 (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/wall.xpm", &(*game).img_width, &(*game).img_height);
                 mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
             }
-            else if (line[l] == 'C')
+            else if ((*game).map[k][l] == 'C')
             {
                 (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/coin.xpm", &(*game).img_width, &(*game).img_height);
                 mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
             }
-            else if (line[l] == 'E')
+            else if ((*game).map[k][l] == 'E')
             {
                 (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/exit.xpm", &(*game).img_width, &(*game).img_height);
                 mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
             }
-            else if (line[l] == 'P')
+            else if ((*game).map[k][l] == 'P')
             {
                 (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/position.xpm", &(*game).img_width, &(*game).img_height);
                 mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
@@ -54,8 +52,7 @@ void  map_draw(t_data *game)
             l++;
             j += 50;
         }
-        free(line);
         i += 50;
+        k++;
     }
-    close(fd);
 }
