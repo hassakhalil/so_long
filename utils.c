@@ -48,15 +48,31 @@ int n_lines(char *s)
     return (i);
 }
 
+int find_position(char *s, int c)
+{
+    int i = 0;
+
+    while (s[i])
+    {
+        if (s[i] == c)
+            return (1);
+        i++;
+    }
+    return (0);
+}
+
 void    position(int *x, int *y, t_data *game)
 {
     int i = 0;
     int j = 0;
 
+    printf("before the seg\n");
+    printf("%s\n", ((*game).map)[0]);
     while (((*game).map)[i])
     {
-        if (ft_strchr(((*game).map)[i], 'P'))
+        if (find_position(((*game).map)[i], 'P'))
         {
+            printf("made it here!\n");
             j = 0;
             while (((*game).map)[i][j] != 'P')
                 j++;
@@ -65,6 +81,7 @@ void    position(int *x, int *y, t_data *game)
             return ;
         }
         (*y)++;
+        i++;
     }
 }
 
@@ -82,7 +99,6 @@ void    convert_map(t_data *game)
         ((*game).map)[i]  = get_next_line(fd);
         i++;
     }
-    ((*game).map)[i] = malloc(sizeof(char *));
     ((*game).map)[i] = NULL;
     close(fd);
 }

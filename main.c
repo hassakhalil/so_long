@@ -14,7 +14,7 @@
 
 int main(int argc, char *argv[])
 {
-    t_data  *game = malloc(sizeof(t_data));
+    t_data  *game = malloc(sizeof(t_data ));
 
     if (argc != 2 || check_for_errors(argv[1]))
     {
