@@ -50,48 +50,20 @@ int n_lines(char *s)
 
 void    position(int *x, int *y, t_data game)
 {
-    int     fd;
-    char    *line;
-
-    fd = open(game.file_name, O_RDWR);
-    line = get_next_line(fd);
-    while (line)
+    *y = 0;
+    while (*y < game.n)
     {
-        if (ft_strchr(line, 'P'))
+        if (ft_strchr((game.map)[*y], 'P'))
         {
             *x = 0;
-            while (line[*x] != 'P')
+            while ((game.map)[*y][*x] != 'P')
                 (*x)++;
-            free(line);
-            close(fd);
             return ;
         }
-        free(line);
-        line = get_next_line(fd);
         (*y)++;
     }
 }
 
-int		new_position(int nx, int ny, t_data game)
-{
-    int     fd;
-    int     i;
-    int     c;
-    char    *line;
-
-    fd = open(game.file_name, O_RDWR);
-    i = 0;
-    line  = get_next_line(fd);
-    while (i != ny)
-    {
-        free(line);
-        line  = get_next_line(fd);
-        i++;
-    }
-    c = line[nx];
-    free(line);
-    return (c);
-}
 
 void    convert_map(t_data *game)
 {

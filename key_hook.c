@@ -42,9 +42,9 @@ int	key_hook(int keycode, t_data *game)
         ny = y;
         nx = x + 1;
     }
-    if (new_position(nx, ny, *game) == '1')
+    if (((*game).map)[ny][nx] == '1')
         return (0);
-    else if (new_position(nx, ny, *game) == '0' || new_position(nx, ny, *game) == 'C')
+    else if (((*game).map)[ny][nx] == '0' || ((*game).map)[ny][nx] == 'C')
     {
         printf("seg here\n");
         ((*game).map)[y][x] = '0';
