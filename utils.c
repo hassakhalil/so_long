@@ -123,3 +123,23 @@ void	ft_putnbr_fd(int n, int fd)
 		write(fd, &c, 1);
 	}
 }
+
+int number_of_collectibles(t_data *game)
+{
+    int i = 0;
+    int j;
+    int n = 0;
+
+    while (((*game).map)[i])
+    {
+        j = 0;
+        while (((*game).map)[i][j])
+        {
+            if (((*game).map)[i][j] == 'C')
+                n++;
+            j++;
+        }
+        i++;
+    }
+    return (n);
+}

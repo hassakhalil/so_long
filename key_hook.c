@@ -13,6 +13,7 @@
 #include "so_long.h"
 
 int moves = 0;
+int collectibles = 0;
 
 int	key_hook(int keycode, t_data *game)
 {
@@ -23,6 +24,8 @@ int	key_hook(int keycode, t_data *game)
 
     if (keycode == 53)
             exit(0);
+    if (!collectibles)
+        collectibles = number_of_collectibles(game);
     position(&x, &y, game);
     if (keycode == 13)
     {
@@ -50,12 +53,16 @@ int	key_hook(int keycode, t_data *game)
     write(1, "\n", 1);
     if (((*game).map)[ny][nx] == '0' || ((*game).map)[ny][nx] == 'C')
     {
+        if (((*game).map)[ny][nx] == 'C')
+            collectibles--;
         ((*game).map)[y][x] = '0';
         ((*game).map)[ny][nx] = 'P';
         map_draw(game);
     }
     else
     {
+        if (collectibles)
+            return (0);
         ((*game).map)[y][x] = '0';
         map_draw(game);
         exit(0);
