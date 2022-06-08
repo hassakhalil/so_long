@@ -15,3 +15,11 @@ BONUS
 mlx_string_put();
 mlx_loop();
 mlx_hook();
+
+
+WORK LEFT
+• Clicking on the cross on the window’s frame must close the window and quit the
+program in a clean way.
+. check leaks & close() 
+.add some maps
+.norm
