@@ -41,4 +41,5 @@ int		key_hook(int keycode, t_data *game);
 void	map_draw(t_data *game);
 void    position(int *x, int *y, t_data *game);
 void    convert_map(t_data *game);
+void	ft_putnbr_fd(int n, int fd);
 #endif

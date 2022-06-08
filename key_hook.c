@@ -12,6 +12,8 @@
 
 #include "so_long.h"
 
+int moves = 0;
+
 int	key_hook(int keycode, t_data *game)
 {
     int x = 0;
@@ -44,7 +46,9 @@ int	key_hook(int keycode, t_data *game)
     }
     if (((*game).map)[ny][nx] == '1')
         return (0);
-    else if (((*game).map)[ny][nx] == '0' || ((*game).map)[ny][nx] == 'C')
+    ft_putnbr_fd(++moves, 1);
+    write(1, "\n", 1);
+    if (((*game).map)[ny][nx] == '0' || ((*game).map)[ny][nx] == 'C')
     {
         ((*game).map)[y][x] = '0';
         ((*game).map)[ny][nx] = 'P';
