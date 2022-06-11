@@ -25,7 +25,6 @@ typedef struct	s_data {
 	int		line_length;
 	int		endian;
 	void	*mlx;
-	void	*win;
 	void    *mlx_win;
 	int		img_width;
 	int		img_height;
@@ -43,4 +42,5 @@ void    position(int *x, int *y, t_data *game);
 void    convert_map(t_data *game);
 void	ft_putnbr_fd(int n, int fd);
 int number_of_collectibles(t_data *game);
+void    free_game(t_data *game);
 #endif

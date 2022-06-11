@@ -143,3 +143,11 @@ int number_of_collectibles(t_data *game)
     }
     return (n);
 }
+
+void    free_game(t_data *game)
+{
+    free((*game).file_name);
+    free((*game).img);
+    free((*game).addr);
+    
+}
