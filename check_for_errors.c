@@ -102,6 +102,7 @@ int check_for_errors(char *s)
           free(line);
           return (-1);
      }
+     free(line);
      line = get_next_line(fd);
      last = ft_strdup(line);
      while (line)

@@ -23,7 +23,10 @@ int	key_hook(int keycode, t_data *game)
     int ny = 0;
 
     if (keycode == 53)
+    {
+            //free game
             exit(0);
+    }
     if (!collectibles)
         collectibles = number_of_collectibles(game);
     position(&x, &y, game);
@@ -67,6 +70,7 @@ int	key_hook(int keycode, t_data *game)
         write(1, "\n", 1);
         ((*game).map)[y][x] = '0';
         map_draw(game);
+        //free game
         exit(0);
     }
 	return (0);

@@ -14,18 +14,20 @@
 
 int	ft_close()
 {
+    //free game
 	exit (0);
 }
 
 int main(int argc, char *argv[])
 {
-    t_data  *game = malloc(sizeof(t_data));
+    t_data  *game;
 
     if (argc != 2 || check_for_errors(argv[1]))
     {
         write(2, "Error\n", 7);
         return (-1);
     }
+    game = malloc(sizeof(t_data));
     (*game).file_name = ft_strdup(argv[1]);
     (*game).mlx = mlx_init();
     (*game).m = n_columns((*game).file_name);
