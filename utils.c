@@ -146,8 +146,20 @@ int number_of_collectibles(t_data *game)
 
 void    free_game(t_data *game)
 {
+    int i;
+
+    i = 0;
     free((*game).file_name);
     free((*game).img);
     free((*game).addr);
-    
+    free((*game).mlx);
+    free((*game).mlx_win);
+    while (((*game).map)[i])
+    {
+        free(((*game).map)[i]);
+        i++;
+    }
+    free(((*game).map)[i]);
+    free((*game).map);
+    free(game);
 }

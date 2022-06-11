@@ -12,9 +12,9 @@
 
 #include "so_long.h"
 
-int	ft_close()
+int	ft_close(t_data *game)
 {
-    //free game
+    free_game(game);
 	exit (0);
 }
 
