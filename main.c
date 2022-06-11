@@ -12,6 +12,11 @@
 
 #include "so_long.h"
 
+int	ft_close()
+{
+	exit (0);
+}
+
 int main(int argc, char *argv[])
 {
     t_data  *game = malloc(sizeof(t_data));
@@ -31,6 +36,7 @@ int main(int argc, char *argv[])
     (*game).addr = mlx_get_data_addr((*game).img, &(*game).bits_per_pixel, &(*game).line_length, &(*game).endian);
     map_draw(game);
     mlx_key_hook((*game).mlx_win, key_hook, game);
+    mlx_hook((*game).mlx_win, 17, 0, ft_close, game);
     mlx_loop((*game).mlx);
     return (0);
 }
