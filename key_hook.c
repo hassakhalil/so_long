@@ -12,25 +12,9 @@
 
 #include "so_long.h"
 
-/*void    new_position(t_data *game)
+void    new_position(t_data *game, int keycode)
 {
-
-}*/
-
-int	key_hook(int keycode, t_data *game)
-{
-	static int	moves = 0;
-	static int	collectibles = 0;
-
-	if (keycode == 53)
-	{
-		free_game(game);
-		exit(0);
-	}
-	if (!collectibles)
-		collectibles = number_of_collectibles(game);
-	position(game);
-	if (keycode == 13)
+    if (keycode == 13)
 	{
 		((*game).ny) = ((*game).y) - 1;
 		((*game).nx) = (*game).x;
@@ -50,6 +34,22 @@ int	key_hook(int keycode, t_data *game)
 		((*game).ny) = ((*game).y);
 		((*game).nx) = ((*game).x) + 1;
 	}
+}
+
+int	key_hook(int keycode, t_data *game)
+{
+	static int	moves = 0;
+	static int	collectibles = 0;
+
+	if (keycode == 53)
+	{
+		free_game(game);
+		exit(0);
+	}
+	if (!collectibles)
+		collectibles = number_of_collectibles(game);
+	position(game);
+    new_position(game, keycode);
 	if (((*game).map)[((*game).ny)][((*game).nx)] == '1')
 		return (0);
 	if (((*game).map)[((*game).ny)][((*game).nx)] == '0' || ((*game).map)[((*game).ny)][((*game).nx)] == 'C')
