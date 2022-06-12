@@ -12,15 +12,14 @@
 
 #include "so_long.h"
 
-int moves = 0;
-int collectibles = 0;
-
 int	key_hook(int keycode, t_data *game)
 {
     int x = 0;
     int y = 0;
     int nx = 0;
     int ny = 0;
+    static int moves = 0;
+    static int collectibles = 0;
 
     if (keycode == 53)
     {
