@@ -6,11 +6,17 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 22:29:33 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/06/01 22:29:37 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/06/12 04:02:34 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	draw(t_data *game, char *s, int i, int j)
+{
+    (*game).img = mlx_xpm_file_to_image((*game).mlx, s, &(*game).img_width, &(*game).img_height);
+    mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
+}
 
 void  map_draw(t_data *game)
 {
@@ -27,28 +33,15 @@ void  map_draw(t_data *game)
         l = 0;
         while (l < (*game).m)
         {
-            (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/background.xpm", &(*game).img_width, &(*game).img_height);
-            mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
+            draw(game, "xpm/background.xpm", i, j);
             if ((*game).map[k][l] == '1')
-            {
-                (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/wall.xpm", &(*game).img_width, &(*game).img_height);
-                mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
-            }
+                draw(game, "xpm/wall.xpm", i, j);
             else if ((*game).map[k][l] == 'C')
-            {
-                (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/coin.xpm", &(*game).img_width, &(*game).img_height);
-                mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
-            }
+                draw(game, "xpm/coin.xpm", i, j);
             else if ((*game).map[k][l] == 'E')
-            {
-                (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/exit.xpm", &(*game).img_width, &(*game).img_height);
-                mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
-            }
+                draw(game, "xpm/exit.xpm", i, j);
             else if ((*game).map[k][l] == 'P')
-            {
-                (*game).img = mlx_xpm_file_to_image((*game).mlx, "xpm/position.xpm", &(*game).img_width, &(*game).img_height);
-                mlx_put_image_to_window((*game).mlx, (*game).mlx_win, (*game).img, j, i);
-            }
+                draw(game, "xpm/position.xpm", i, j);
             l++;
             j += 50;
         }
