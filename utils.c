@@ -62,7 +62,7 @@ int	find_position(char *s, int c)
 	return (0);
 }
 
-void	position(int *x, int *y, t_data *game)
+void	position(t_data *game)
 {
 	int	i;
 	int	j;
@@ -75,11 +75,11 @@ void	position(int *x, int *y, t_data *game)
 			j = 0;
 			while (((*game).map)[i][j] != 'P')
 				j++;
-			*y = i;
-			*x = j;
+			(*game).y = i;
+			(*game).x = j;
 			return ;
 		}
-		(*y)++;
+		((*game).y)++;
 		i++;
 	}
 }
