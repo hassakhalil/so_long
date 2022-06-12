@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 00:00:58 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/05/24 00:01:36 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/06/12 04:40:37 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strchr(const char *s, int c)
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t		i;
-	char	*sub;
+	char		*sub;
 
 	if (!s)
 		return (0);

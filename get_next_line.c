@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/24 00:00:09 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/05/24 00:00:13 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/06/12 04:40:11 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*get_next_line(int fd)
 		ret = read_new_buff(&rest, fd);
 		if (ft_strchr(rest, '\n'))
 			return (rest_with_nl(&rest));
-		 if (ret < BUFFER_SIZE)
+		if (ret < BUFFER_SIZE)
 			return (last_line(&rest));
 	}
 	return (0);

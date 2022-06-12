@@ -12,6 +12,66 @@
 
 #include "so_long.h"
 
+void	ft_putnbr_fd(int n, int fd)
+{
+	char	c;
+	long	x;
+
+	x = n;
+	if (x < 0)
+	{
+		write(fd, "-", 1);
+		x = x * (-1);
+	}
+	if (x > 9)
+	{
+		ft_putnbr_fd(x / 10, fd);
+		ft_putnbr_fd(x % 10, fd);
+	}
+	else
+	{
+		c = x + '0';
+		write(fd, &c, 1);
+	}
+}
+
+void	convert_map(t_data *game)
+{
+	int	fd;
+	int	i;
+
+	fd = open((*game).file_name, O_RDWR);
+	i = 0;
+	(*game).map = malloc(sizeof(char *) * ((*game).n + 1));
+	while (i < (*game).n)
+	{
+		((*game).map)[i] = get_next_line(fd);
+		i++;
+	}
+	((*game).map)[i] = NULL;
+	close(fd);
+}
+
+void	free_game(t_data *game)
+{
+	int	i;
+
+	i = 0;
+	free((*game).file_name);
+	free((*game).img);
+	free((*game).addr);
+	free((*game).mlx);
+	free((*game).mlx_win);
+	while (((*game).map)[i])
+	{
+		free(((*game).map)[i]);
+		i++;
+	}
+	free(((*game).map)[i]);
+	free((*game).map);
+	free(game);
+}
+
 int	ft_close(t_data *game)
 {
 	free_game(game);
