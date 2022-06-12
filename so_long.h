@@ -34,6 +34,8 @@ typedef struct s_data {
 	int		m;
 	int		x;
 	int		y;
+	int		nx;
+	int		ny;
 }				t_data;
 int		check_for_errors(char *s);
 int		n_columns(char *s);

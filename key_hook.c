@@ -12,12 +12,15 @@
 
 #include "so_long.h"
 
-//void    new_position(int )
+/*void    new_position(t_data *game)
+{
+
+}*/
 
 int	key_hook(int keycode, t_data *game)
 {
-	int			nx = 0;
-	int			ny = 0;
+	//int			nx = 0;
+	//int			ny = 0;
 	static int	moves = 0;
 	static int	collectibles = 0;
 
@@ -31,34 +34,34 @@ int	key_hook(int keycode, t_data *game)
 	position(game);
 	if (keycode == 13)
 	{
-		ny = ((*game).y) - 1;
-		nx = (*game).x;
+		((*game).ny) = ((*game).y) - 1;
+		((*game).nx) = (*game).x;
 	}
 	else if (keycode == 0)
 	{
-		ny = (*game).y;
-		nx = (*game).x - 1;
+		((*game).ny) = (*game).y;
+		((*game).nx) = (*game).x - 1;
 	}
 	else if (keycode == 1)
 	{
-		ny = ((*game).y) + 1;
-		nx = (*game).x;
+		((*game).ny) = ((*game).y) + 1;
+		((*game).nx) = (*game).x;
 	}
 	else if (keycode == 2)
 	{
-		ny = ((*game).y);
-		nx = ((*game).x) + 1;
+		((*game).ny) = ((*game).y);
+		((*game).nx) = ((*game).x) + 1;
 	}
-	if (((*game).map)[ny][nx] == '1')
+	if (((*game).map)[((*game).ny)][((*game).nx)] == '1')
 		return (0);
-	if (((*game).map)[ny][nx] == '0' || ((*game).map)[ny][nx] == 'C')
+	if (((*game).map)[((*game).ny)][((*game).nx)] == '0' || ((*game).map)[((*game).ny)][((*game).nx)] == 'C')
 	{
 		ft_putnbr_fd(++moves, 1);
 		write(1, "\n", 1);
-		if (((*game).map)[ny][nx] == 'C')
+		if (((*game).map)[((*game).ny)][((*game).nx)] == 'C')
 			collectibles--;
 		((*game).map)[((*game).y)][((*game).x)] = '0';
-		((*game).map)[ny][nx] = 'P';
+		((*game).map)[((*game).ny)][((*game).nx)] = 'P';
 		map_draw(game);
 	}
 	else
