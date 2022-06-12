@@ -19,8 +19,6 @@
 
 int	key_hook(int keycode, t_data *game)
 {
-	//int			nx = 0;
-	//int			ny = 0;
 	static int	moves = 0;
 	static int	collectibles = 0;
 
