@@ -36,16 +36,19 @@ void    new_position(t_data *game, int keycode)
 	}
 }
 
+void    free_exit(t_data *game)
+{
+    free_game(game);
+	exit(0);
+}
+
 int	key_hook(int keycode, t_data *game)
 {
 	static int	moves = 0;
 	static int	collectibles = 0;
 
 	if (keycode == 53)
-	{
-		free_game(game);
-		exit(0);
-	}
+        free_exit(game);
 	if (!collectibles)
 		collectibles = number_of_collectibles(game);
 	position(game);
@@ -70,8 +73,7 @@ int	key_hook(int keycode, t_data *game)
 		write(1, "\n", 1);
 		((*game).map)[((*game).y)][((*game).x)] = '0';
 		map_draw(game);
-		free_game(game);
-		exit(0);
+		free_exit(game);
 	}
 	return (0);
 }
