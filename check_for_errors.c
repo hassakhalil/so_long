@@ -17,6 +17,8 @@ int	check_walls(char *wall)
 	int	i;
 
 	i = 0;
+	if (!wall)
+		return (-1);
 	while (wall[i] != '\n')
 	{
 		if (wall[i] != '1')

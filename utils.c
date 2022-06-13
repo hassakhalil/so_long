@@ -19,7 +19,6 @@ int	n_columns(char *s)
 	char	*line;
 
 	fd = open(s, O_RDWR);
-	i = 0;
 	line = get_next_line(fd);
 	if (!line)
 		return (0);
