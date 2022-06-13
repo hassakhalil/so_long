@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:52:24 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/06/13 01:35:48 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/06/13 02:46:24 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	check_walls(char *wall)
 
 int	check_first_last_line(char *s)
 {
-	char *line;
+	char	*line;
 	char	*last;
 	char	*first;
-	int fd;
-	int	n;
+	int		fd;
+	int		n;
 
 	fd = open(s, O_RDWR);
 	first = get_next_line(fd);
@@ -123,8 +123,8 @@ int	check_min_req(char *s)
 
 int	check_mid_lines(char *s, int n)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	fd = open(s, O_RDWR);
 	line = get_next_line(fd);
