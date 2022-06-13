@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:52:24 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/06/12 03:54:39 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/06/13 01:35:48 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,38 +47,41 @@ int	check_line(char *line)
 	return (0);
 }
 
+void	check_min_req_h(char *s, int *position, int *collectibles, int *exit)
+{
+	int		fd;
+	char	*line;
+
+	fd = open(s, O_RDWR);
+	if (fd == -1)
+		return ;
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (ft_strchr(line, 'E'))
+			(*exit)++;
+		if (ft_strchr(line, 'C'))
+			(*collectibles)++;
+		if (ft_strchr(line, 'P'))
+			(*position)++;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close (fd);
+}
+
 int	check_min_req(char *s)
 {
 	int		position;
 	int		collectibles;
 	int		exit;
-	int		fd;
-	char	*line;
 
 	position = 0;
 	collectibles = 0;
 	exit = 0;
-	fd = open(s, O_RDWR);
-	if (fd == -1)
-		return (-1);
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (ft_strchr(line, 'E'))
-			exit++;
-		if (ft_strchr(line, 'C'))
-			collectibles++;
-		if (ft_strchr(line, 'P'))
-			position++;
-		free(line);
-		line = get_next_line(fd);
-	}
+	check_min_req_h(s, &position, &collectibles, &exit);
 	if (position != 1 || !collectibles || exit != 1)
-	{
-		close(fd);
 		return (-1);
-	}
-	close(fd);
 	return (0);
 }
 
