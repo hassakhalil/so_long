@@ -131,19 +131,11 @@ int	check_min_req(char *s)
 	return (0);
 }
 
-int	check_for_errors(char *s)
+int	check_mid_lines(char *s, int n)
 {
-	int	n;
-	int		fd;
-	char	*line;
+	int fd;
+	char *line;
 
-	n = ft_strlen(s);
-	if (s[n - 4] != '.' || s[n - 3] != 'b'
-		|| s[n - 2] != 'e' || s[n - 1] != 'r')
-		return (-1);
-	n = check_first_last_line(s);
-	if (n == -1)
-		return (-1);
 	fd = open(s, O_RDWR);
 	line = get_next_line(fd);
 	free(line);
@@ -160,6 +152,19 @@ int	check_for_errors(char *s)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	return (0);
+}
+int	check_for_errors(char *s)
+{
+	int	n;
+
+	n = ft_strlen(s);
+	if (s[n - 4] != '.' || s[n - 3] != 'b'
+		|| s[n - 2] != 'e' || s[n - 1] != 'r')
+		return (-1);
+	n = check_first_last_line(s);
+	if (n == -1 || check_mid_lines(s, n) == -1)
+		return (-1);
 	if (check_min_req(s))
 		return (-1);
 	return (0);
