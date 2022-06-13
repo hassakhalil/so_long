@@ -12,32 +12,32 @@
 
 #include "so_long.h"
 
-int	check_first_last_line(char *s)
+int	check_walls(char *wall)
 {
 	int	i;
+
+	i = 0;
+	while (wall[i] != '\n')
+	{
+		if (wall[i] != '1')
+			return (-1);
+		i++;
+	}
+	free(wall);
+	return (0);
+}
+
+int	check_first_last_line(char *s)
+{
 	char *line;
 	char	*last;
+	char	*first;
 	int fd;
 	int	n;
 
-	i = 0;
 	fd = open(s, O_RDWR);
-	if (fd == -1)
-		return (-1);
-	line = get_next_line(fd);
-	n = ft_strlen(line);
-	while (line[i] != '\n')
-	{
-		if (line[i] != '1')
-		{
-			close (fd);
-			free(line);
-			return (-1);
-		}
-		i++;
-	}
-	free(line);
-	i = 0;
+	first = get_next_line(fd);
+	n = ft_strlen(first);
 	line = get_next_line(fd);
 	last = ft_strdup(line);
 	while (line)
@@ -50,19 +50,9 @@ int	check_first_last_line(char *s)
 			last = ft_strdup(line);
 		}
 	}
-	i = 0;
-	while (last[i] != '\n')
-	{
-		if (last[i] != '1')
-		{
-			close (fd);
-			free(last);
-			return (-1);
-		}
-		i++;
-	}
-	free(last);
 	close(fd);
+	if (check_walls(first) == -1 || check_walls(last) == -1)
+		return (-1);
 	return (n);
 }
 
@@ -154,6 +144,7 @@ int	check_mid_lines(char *s, int n)
 	close(fd);
 	return (0);
 }
+
 int	check_for_errors(char *s)
 {
 	int	n;
