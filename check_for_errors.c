@@ -83,6 +83,8 @@ int	check_mid_lines(char *s, int n)
 	char	*line;
 
 	fd = open(s, O_RDWR);
+	if (fd == -1)
+		return (-1);
 	line = get_next_line(fd);
 	free(line);
 	line = get_next_line(fd);
@@ -105,6 +107,8 @@ int	check_for_errors(char *s)
 {
 	int	n;
 
+	if (!s)
+		return (-1);
 	n = ft_strlen(s);
 	if (s[n - 4] != '.' || s[n - 3] != 'b'
 		|| s[n - 2] != 'e' || s[n - 1] != 'r')
@@ -112,7 +116,5 @@ int	check_for_errors(char *s)
 	n = check_first_last_line(s);
 	if (n == -1 || check_mid_lines(s, n) == -1)
 		return (-1);
-	if (check_min_req(s))
-		return (-1);
-	return (0);
+	return (check_min_req(s));
 }

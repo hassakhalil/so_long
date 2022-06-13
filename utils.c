@@ -25,6 +25,7 @@ int	n_columns(char *s)
 		return (0);
 	i = ft_strlen(line) - 1;
 	free(line);
+	close(fd);
 	return (i);
 }
 
@@ -45,6 +46,7 @@ int	n_lines(char *s)
 		free(line);
 		line = get_next_line(fd);
 	}
+	close(fd);
 	return (i);
 }
 
