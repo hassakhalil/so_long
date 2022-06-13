@@ -6,7 +6,7 @@
 /*   By: hkhalil <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/20 11:21:41 by hkhalil           #+#    #+#             */
-/*   Updated: 2022/06/12 04:24:40 by hkhalil          ###   ########.fr       */
+/*   Updated: 2022/06/13 02:51:16 by hkhalil          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_data {
 	int		ny;
 }				t_data;
 int		check_for_errors(char *s);
+int		check_min_req(char *s);
 int		n_columns(char *s);
 int		n_lines(char *s);
 int		key_hook(int keycode, t_data *game);

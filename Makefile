@@ -12,7 +12,7 @@
 
 NAME = so_long
 
-SRC = main.c check_for_errors.c get_next_line.c get_next_line_utils.c utils.c key_hook.c map_draw.c
+SRC = main.c check_for_errors.c get_next_line.c get_next_line_utils.c utils.c key_hook.c map_draw.c utils1.c
 
 OBJ = $(SRC:.c=.o)
 
