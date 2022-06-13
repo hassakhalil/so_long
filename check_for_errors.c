@@ -12,18 +12,58 @@
 
 #include "so_long.h"
 
-int	check_first_last_line(char *line)
+int	check_first_last_line(char *s)
 {
 	int	i;
+	char *line;
+	char	*last;
+	int fd;
+	int	n;
 
 	i = 0;
+	fd = open(s, O_RDWR);
+	if (fd == -1)
+		return (-1);
+	line = get_next_line(fd);
+	n = ft_strlen(line);
 	while (line[i] != '\n')
 	{
 		if (line[i] != '1')
+		{
+			close (fd);
+			free(line);
 			return (-1);
+		}
 		i++;
 	}
-	return (0);
+	free(line);
+	i = 0;
+	line = get_next_line(fd);
+	last = ft_strdup(line);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		if (line)
+		{
+			free(last);
+			last = ft_strdup(line);
+		}
+	}
+	i = 0;
+	while (last[i] != '\n')
+	{
+		if (last[i] != '1')
+		{
+			close (fd);
+			free(last);
+			return (-1);
+		}
+		i++;
+	}
+	free(last);
+	close(fd);
+	return (n);
 }
 
 int	check_line(char *line)
@@ -51,6 +91,7 @@ void	check_min_req_h(char *s, int *position, int *collectibles, int *exit)
 {
 	int		fd;
 	char	*line;
+	int		i;
 
 	fd = open(s, O_RDWR);
 	if (fd == -1)
@@ -58,12 +99,17 @@ void	check_min_req_h(char *s, int *position, int *collectibles, int *exit)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (ft_strchr(line, 'E'))
-			(*exit)++;
-		if (ft_strchr(line, 'C'))
-			(*collectibles)++;
-		if (ft_strchr(line, 'P'))
-			(*position)++;
+		i = 0;
+		while (line[i])
+		{
+			if (line[i] == 'E')
+				(*exit)++;
+			if (line[i] == 'C')
+				(*collectibles)++;
+			if (line[i] == 'P')
+				(*position)++;
+			i++;
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
@@ -80,58 +126,40 @@ int	check_min_req(char *s)
 	collectibles = 0;
 	exit = 0;
 	check_min_req_h(s, &position, &collectibles, &exit);
-	if (position != 1 || !collectibles || exit != 1)
+	if (position != 1 || !collectibles || !exit)
 		return (-1);
 	return (0);
 }
 
 int	check_for_errors(char *s)
 {
-	size_t	n;
+	int	n;
 	int		fd;
 	char	*line;
-	char	*last;
 
 	n = ft_strlen(s);
 	if (s[n - 4] != '.' || s[n - 3] != 'b'
 		|| s[n - 2] != 'e' || s[n - 1] != 'r')
 		return (-1);
+	n = check_first_last_line(s);
+	if (n == -1)
+		return (-1);
 	fd = open(s, O_RDWR);
-	if (fd == -1)
-		return (-1);
 	line = get_next_line(fd);
-	n = ft_strlen(line);
-	if (check_first_last_line(line))
-	{
-		close(fd);
-		free(line);
-		return (-1);
-	}
 	free(line);
 	line = get_next_line(fd);
-	last = ft_strdup(line);
 	while (line)
 	{
-		free(last);
-		last = ft_strdup(line);
-		if (check_line(line) || ft_strlen(line) != n)
+		if (check_line(line) || ft_strlen(line) != (size_t)n)
 		{
 			close(fd);
 			free(line);
-			free(last);
 			return (-1);
 		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (check_first_last_line(last))
-	{
-		close(fd);
-		free(last);
-		return (-1);
-	}
 	close(fd);
-	free(last);
 	if (check_min_req(s))
 		return (-1);
 	return (0);
