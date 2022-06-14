@@ -46,7 +46,6 @@ void	convert_map(t_data *game)
 	while (i < (*game).n)
 	{
 		((*game).map)[i] = get_next_line(fd);
-		printf("%s", ((*game).map)[i]);
 		i++;
 	}
 	((*game).map)[i] = NULL;
