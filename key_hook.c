@@ -34,6 +34,9 @@ void	new_position(t_data *game, int keycode)
 		((*game).ny) = ((*game).y);
 		((*game).nx) = ((*game).x) + 1;
 	}
+	else
+		((*game).ny) = ((*game).y);
+		((*game).nx) = ((*game).x);
 }
 
 void	free_exit(t_data *game)
