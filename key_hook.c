@@ -14,29 +14,28 @@
 
 void	new_position(t_data *game, int keycode)
 {
-	if (keycode == 13)
+	((*game).ny) = ((*game).y);
+	((*game).nx) = ((*game).x);
+	if (keycode == 13 || keycode == 126)
 	{
 		((*game).ny) = ((*game).y) - 1;
 		((*game).nx) = (*game).x;
 	}
-	else if (keycode == 0)
+	else if (keycode == 0 || keycode == 123)
 	{
 		((*game).ny) = (*game).y;
 		((*game).nx) = (*game).x - 1;
 	}
-	else if (keycode == 1)
+	else if (keycode == 1 || keycode == 125)
 	{
 		((*game).ny) = ((*game).y) + 1;
 		((*game).nx) = (*game).x;
 	}
-	else if (keycode == 2)
+	else if (keycode == 2 || keycode == 124)
 	{
 		((*game).ny) = ((*game).y);
 		((*game).nx) = ((*game).x) + 1;
 	}
-	else
-		((*game).ny) = ((*game).y);
-		((*game).nx) = ((*game).x);
 }
 
 void	free_exit(t_data *game)
