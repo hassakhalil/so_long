@@ -16,7 +16,7 @@ SRC = main.c check_for_errors.c get_next_line.c get_next_line_utils.c utils.c ke
 
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -D BUFFER_SIZE=42 -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS = -D BUFFER_SIZE=10 -Wall -Wextra -Werror -g -fsanitize=address
 
 %.o: %.c
 	$(CC) $(CFLAGS) -Imlx -c $< -o $@

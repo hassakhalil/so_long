@@ -46,6 +46,7 @@ void	convert_map(t_data *game)
 	while (i < (*game).n)
 	{
 		((*game).map)[i] = get_next_line(fd);
+		printf("%s", ((*game).map)[i]);
 		i++;
 	}
 	((*game).map)[i] = NULL;
@@ -90,9 +91,9 @@ int	main(int argc, char *argv[])
 	game = malloc(sizeof(t_data));
 	(*game).file_name = ft_strdup(argv[1]);
 	(*game).mlx = mlx_init();
-	(*game).m = n_columns((*game).file_name);
 	(*game).n = n_lines((*game).file_name);
 	convert_map(game);
+	(*game).m = n_columns((*game).file_name);
 	(*game).mlx_win = mlx_new_window((*game).mlx,
 			(*game).m * 50, (*game).n * 50, "./so_long");
 	(*game).img = mlx_new_image((*game).mlx, (*game).m * 50, (*game).n * 50);
