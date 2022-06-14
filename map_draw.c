@@ -28,7 +28,7 @@ void	map_draw(t_data *game)
 	while (k < ((*game).n))
 	{
 		l = 0;
-		while (l < (*game).m )
+		while (l < (*game).m)
 		{
 			draw(game, "xpm/background.xpm", k * 50, l * 50);
 			if ((*game).map[k][l] == '1')
